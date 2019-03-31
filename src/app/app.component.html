@@ -26,7 +26,7 @@
 
   <div class="ui-g">
     <div class="ui-g-12">
-      <p-dataTable [value]="lancamentos" [paginator]="true" [rows]="2">
+      <p-dataTable [value]="lancamentos" [paginator]="true" [rows]="2" [responsive]="true" >
         <p-column header="Pessoa" field="pessoa"></p-column>
         <p-column header="Descrição" field="descricao"></p-column>
         <p-column header="Vencimento" field="dataVencimento" styleClass="col-data"></p-column>
