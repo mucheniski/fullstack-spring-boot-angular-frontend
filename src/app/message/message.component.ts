@@ -16,7 +16,7 @@ import { FormControl } from '@angular/forms';
       color: red;
     }
   `]
-})// testando o git com senha automática
+})
 export class MessageComponent {
 
   @Input() error: string;
