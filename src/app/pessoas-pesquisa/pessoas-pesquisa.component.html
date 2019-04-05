@@ -18,18 +18,7 @@
 
   <div class="ui-g">
     <div class="ui-g-12">
-      <p-dataTable [value]="pessoas" [paginator]="true" [rows]="2" [responsive]="true" >
-        <p-column header="Nome" field="nome"></p-column>
-        <p-column header="Cidade" field="cidade"></p-column>
-        <p-column header="Estado" field="estado"></p-column>
-        <p-column header="Status" field="ativo"></p-column>
-        <p-column header="Ações" styleClass="col-acoes">
-          <ng-template pTemplate="body">
-            <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
-            <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"></button>
-          </ng-template>
-        </p-column>
-      </p-dataTable>
+      <app-pessoas-grid [pessoas]="pessoas"></app-pessoas-grid>
     </div>
 
     <div class="ui-g-12">
