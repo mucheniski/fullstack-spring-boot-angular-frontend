@@ -1,3 +1,4 @@
+import { LancamentoService } from './lancamentos/lancamento.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,7 +25,10 @@ import { HttpClientModule } from '@angular/common/http';
     CoreModule,
     HttpClientModule
   ],
-  providers: [CategoriaService],
+  providers: [
+    CategoriaService,
+    LancamentoService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
