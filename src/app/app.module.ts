@@ -1,11 +1,15 @@
-import { PessoasModule } from './pessoas/pessoas.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CoreModule } from './core/core.module';
 
 import { AppComponent } from './app.component';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
-import { CoreModule } from './core/core.module';
+import { PessoasModule } from './pessoas/pessoas.module';
+import { CategoriasModule } from './categorias/categorias.module';
+import { CategoriaService } from './categorias/categoria.service';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -16,9 +20,11 @@ import { CoreModule } from './core/core.module';
     BrowserAnimationsModule,
     PessoasModule,
     LancamentosModule,
-    CoreModule
+    CategoriasModule,
+    CoreModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [CategoriaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
