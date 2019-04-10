@@ -6,7 +6,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
-import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.component';
 
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
@@ -23,7 +22,6 @@ import { SharedModule } from '../shared/shared.module';
 @NgModule({
   declarations: [
     LancamentosPesquisaComponent,
-    LancamentosGridComponent,
     LancamentoCadastroComponent
   ],
   imports: [
