@@ -7,10 +7,12 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json', Authorization: 'Basic YWRtaW5AdGVzdGUuY29tOmFkbWlu' })
 };
 
-export interface LancamentoFiltro {
+export class LancamentoFiltro {
   descricao: string;
   dataVencimentoDe: Date;
   dataVencimentoAte: Date;
+  pagina = 0;
+  itensPorPagina = 5;
 }
 
 @Injectable({
@@ -24,6 +26,9 @@ export class LancamentoService {
 
     pesquisar(filtro: LancamentoFiltro): Promise<any> {
       const params = new URLSearchParams();
+
+      params.set('page', filtro.pagina.toString());
+      params.set('size', filtro.itensPorPagina.toString());
 
       if (filtro.descricao) {
         params.set('descricao', filtro.descricao);
