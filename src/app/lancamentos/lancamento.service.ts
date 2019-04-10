@@ -1,12 +1,16 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import * as moment from 'moment';
+
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json', Authorization: 'Basic YWRtaW5AdGVzdGUuY29tOmFkbWlu' })
 };
 
 export interface LancamentoFiltro {
   descricao: string;
+  dataVencimentoDe: Date;
+  dataVencimentoAte: Date;
 }
 
 @Injectable({
@@ -23,6 +27,14 @@ export class LancamentoService {
 
       if (filtro.descricao) {
         params.set('descricao', filtro.descricao);
+      }
+
+      if (filtro.dataVencimentoDe) {
+        params.set('dataVencimentoDe', moment(filtro.dataVencimentoDe).format('YYYY-MM-DD'));
+      }
+
+      if (filtro.dataVencimentoAte) {
+        params.set('dataVencimentoAte', moment(filtro.dataVencimentoAte).format('YYYY-MM-DD'));
       }
 
       return this.http.get(`${this.lancamentosUrl}?resumo&${params}`, httpOptions)
