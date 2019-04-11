@@ -47,4 +47,10 @@ export class LancamentoService {
         .then(response => response);
     }
 
+    excluir(codigo: number): Promise<void> {
+      return this.http.delete(`${this.lancamentosUrl}/${codigo}`, httpOptions)
+        .toPromise()
+        .then(() => null);
+    }
+
 }
