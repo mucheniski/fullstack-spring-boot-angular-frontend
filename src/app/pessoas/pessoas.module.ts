@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
-import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 
 import { InputTextModule } from 'primeng/inputtext';
@@ -21,7 +20,6 @@ import { SharedModule } from '../shared/shared.module';
 @NgModule({
   declarations: [
     PessoasPesquisaComponent,
-    PessoasGridComponent,
     PessoaCadastroComponent
   ],
   imports: [

@@ -1,24 +1,47 @@
 <div class="container">
   <div class="ui-g">
+    <form autocomplete="off" (ngSubmit)="pesquisar()">
 
-    <div class="ui-g-12">
-      <h1>Pessoas</h1>
-    </div>
+      <div class="ui-g-12">
+        <h1>Pessoas</h1>
+      </div>
 
-    <div class="ui-g-12 ui-fluid">
-      <label>Nome</label>
-      <input type="text" pInputText />
-    </div>
+      <div class="ui-g-12 ui-fluid">
+        <label>Nome</label>
+        <input type="text" pInputText name="nome" [(ngModel)]="filtro.nome" />
+      </div>
 
-    <div class="ui-g-12">
-      <button pButton type="submit" label="Pesquisar"></button>
-    </div>
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Pesquisar"></button>
+      </div>
 
+    </form>
   </div>
 
   <div class="ui-g">
     <div class="ui-g-12">
-      <app-pessoas-grid [pessoas]="pessoas"></app-pessoas-grid>
+      <p-dataTable [value]="pessoas" [responsive]="true" emptyMessage="Nenhum registro encontrado!"
+      [paginator]="true" [rows]="filtro.itensPorPagina" [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="atualizarPagina($event)">
+
+        <p-column header="Nome" field="nome"></p-column>
+        <p-column header="Cidade" field="cidade"></p-column>
+        <p-column header="Estado" field="estado"></p-column>
+
+        <p-column field="ativo" header="Status">
+          <ng-template let-pesssoa="rowData" pTemplate="body">
+              <a href="javascript:;" [pTooltip]="pesssoa.ativo ? 'Desativar' : 'Ativar' " tooltipPosition="top">
+                {{ pesssoa.ativo ? 'Ativo' : 'Inativo' }}
+              </a>
+          </ng-template>
+        </p-column>
+
+        <p-column header="Ações" styleClass="col-acoes">
+          <ng-template pTemplate="body">
+            <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
+            <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"></button>
+          </ng-template>
+        </p-column>
+      </p-dataTable>
     </div>
 
     <div class="ui-g-12">

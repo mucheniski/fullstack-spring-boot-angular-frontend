@@ -1,17 +1,37 @@
 import { Component, OnInit } from '@angular/core';
 
+import { LazyLoadEvent } from 'primeng/components/common/api';
+
+import { PessoaService, PessoaFiltro } from './../pessoa.service';
+
 @Component({
   selector: 'app-pessoas-pesquisa',
   templateUrl: './pessoas-pesquisa.component.html',
   styleUrls: ['./pessoas-pesquisa.component.css']
 })
-export class PessoasPesquisaComponent {
+export class PessoasPesquisaComponent implements OnInit {
 
-  pessoas = [
-    { nome: 'Bruna', cidade: 'Londrina', estado: 'PR', ativo: true },
-    { nome: 'Diego', cidade: 'Londrina', estado: 'PR', ativo: false },
-    { nome: 'Lívia', cidade: 'Londrina', estado: 'PR', ativo: true },
-    { nome: 'Miguel', cidade: 'Londrina', estado: 'PR', ativo: true }
-  ];
+  totalRegistros = 0;
+  pagina = 0;
+  filtro = new PessoaFiltro();
+  pessoas = [];
+
+  constructor(private pessoaService: PessoaService) {}
+
+  ngOnInit(): void {
+  }
+
+  pesquisar(pagina = 0) {
+    this.filtro.pagina = pagina;
+    this.pessoaService.pesquisar(this.filtro)
+          .then(response => { this.pessoas = response.content;
+                              this.totalRegistros = response.totalElements;
+                            });
+  }
+
+  atualizarPagina(event: LazyLoadEvent) {
+    const pagina = event.first / event.rows;
+    this.pesquisar(pagina);
+  }
 
 }
