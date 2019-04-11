@@ -28,7 +28,8 @@
 
   <div class="ui-g">
     <div class="ui-g-12">
-      <p-dataTable [value]="lancamentos" [paginator]="true" [rows]="5" [responsive]="true" emptyMessage="Nenhum lançamento encontrado!">
+      <p-dataTable [value]="lancamentos" [responsive]="true" emptyMessage="Nenhum lançamento encontrado!"
+      [paginator]="true" [rows]="filtro.itensPorPagina" [lazy]="true" [totalRecords]="totalRegistros"  (onLazyLoad)="atualizarPagina($event)">
 
           <p-column header="Pessoa" field="pessoa"></p-column>
 
