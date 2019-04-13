@@ -5,6 +5,7 @@ import { MessageService } from 'primeng/components/common/api';
 import { ConfirmationService } from 'primeng/api';
 
 import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
+import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -21,7 +22,8 @@ export class LancamentosPesquisaComponent implements OnInit {
 
   constructor(private lancamentoService: LancamentoService,
               private messageService: MessageService,
-              private confirmation: ConfirmationService) {}
+              private confirmation: ConfirmationService,
+              private errorHandle: ErrorHandlerService) {}
 
   ngOnInit() {
   }
@@ -31,7 +33,8 @@ export class LancamentosPesquisaComponent implements OnInit {
     this.lancamentoService.pesquisar(this.filtro)
           .then(response => { this.lancamentos = response.content;
                               this.totalRegistros = response.totalElements;
-                            });
+                            })
+          .catch(erro => this.errorHandle.handle(erro));
   }
 
   atualizarPagina(event: LazyLoadEvent) {
@@ -50,8 +53,9 @@ export class LancamentosPesquisaComponent implements OnInit {
                 } else {
                   this.tabela.first = 0;
                 }
-              });
-        this.messageService.add({severity: 'success', summary: 'Success Message', detail: 'Excluído com sucesso!'});
+                this.messageService.add({severity: 'success', summary: 'Success Message', detail: 'Excluído com sucesso!'});
+              })
+              .catch(erro => this.errorHandle.handle(erro));
       },
     });
   }
