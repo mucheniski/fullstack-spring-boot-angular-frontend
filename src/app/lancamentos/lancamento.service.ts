@@ -48,7 +48,7 @@ export class LancamentoService {
     }
 
     excluir(codigo: number): Promise<void> {
-      return this.http.delete(`${this.lancamentosUrl}/${codigo}111`, httpOptions)
+      return this.http.delete(`${this.lancamentosUrl}/${codigo}`, httpOptions)
         .toPromise()
         .then(() => null);
     }

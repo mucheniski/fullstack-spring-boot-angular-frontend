@@ -20,14 +20,15 @@
 
   <div class="ui-g">
     <div class="ui-g-12">
-      <p-dataTable [value]="pessoas" [responsive]="true" emptyMessage="Nenhum registro encontrado!"
+      <p-dataTable #tabela [value]="pessoas" [responsive]="true" emptyMessage="Nenhum registro encontrado!"
       [paginator]="true" [rows]="filtro.itensPorPagina" [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="atualizarPagina($event)">
 
+        <p-column header="Código" field="codigo"></p-column>
         <p-column header="Nome" field="nome"></p-column>
-        <p-column header="Cidade" field="cidade"></p-column>
-        <p-column header="Estado" field="estado"></p-column>
+        <p-column header="Cidade" field="endereco.cidade"></p-column>
+        <p-column header="Estado" field="endereco.estado"></p-column>
 
-        <p-column field="ativo" header="Status">
+        <p-column header="Status" field="ativo">
           <ng-template let-pesssoa="rowData" pTemplate="body">
               <a href="javascript:;" [pTooltip]="pesssoa.ativo ? 'Desativar' : 'Ativar' " tooltipPosition="top">
                 {{ pesssoa.ativo ? 'Ativo' : 'Inativo' }}
@@ -36,9 +37,9 @@
         </p-column>
 
         <p-column header="Ações" styleClass="col-acoes">
-          <ng-template pTemplate="body">
+          <ng-template pTemplate="body" let-pessoa="rowData">
             <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
-            <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"></button>
+            <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top" (click)="excluir(pessoa)"></button>
           </ng-template>
         </p-column>
       </p-dataTable>
