@@ -41,4 +41,11 @@ export class PessoaService {
       .then(() => null);
   }
 
+  alterarStatus(codigo: number, novoStatus: boolean): Promise<void> {
+
+    return this.http.put(`${this.pessoasUrl}/${codigo}/ativo`, novoStatus, httpOptions)
+    .toPromise()
+    .then(() => null);
+  }
+
 }
