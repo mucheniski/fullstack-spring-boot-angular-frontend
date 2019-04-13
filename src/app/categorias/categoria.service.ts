@@ -18,7 +18,11 @@ export class CategoriaService {
 
   constructor( private http: HttpClient ) { }
 
-  /** GET heroes from the server */
+  listarTodas(): Promise<any> {
+    return this.http.get(this.categoriasUrl, httpOptions)
+      .toPromise();
+  }
+
   pesquisar(): Observable<Categoria[]> {
     return this.http.get<Categoria[]>(this.categoriasUrl, httpOptions)
       .pipe(
@@ -27,7 +31,6 @@ export class CategoriaService {
       );
   }
 
-  /** Log a HeroService message with the MessageService */
   private log(message: string) {
     console.log(message);
   }
