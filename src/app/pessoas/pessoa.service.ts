@@ -20,6 +20,12 @@ export class PessoaService {
 
   constructor(private http: HttpClient) { }
 
+  listarTodas(): Promise<any> {
+    return this.http.get<any>(this.pessoasUrl, httpOptions)
+      .toPromise()
+      .then(response => response.content);
+  }
+
   pesquisar(filtro: PessoaFiltro): Promise<any> {
     const params = new URLSearchParams();
 
