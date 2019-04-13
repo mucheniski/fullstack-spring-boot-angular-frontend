@@ -1,6 +1,16 @@
 <app-navbar></app-navbar>
+
 <p-toast></p-toast>
+
+<p-confirmDialog header="Confirmação" icon="pi pi-question-circle" #opcao>
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" label="Sim" (click)="opcao.accept()" ></button>
+    <button type="button" pButton icon="pi pi-times" label="Não" (click)="opcao.reject()" ></button>
+  </p-footer>
+</p-confirmDialog>
+
 <app-lancamentos-pesquisa></app-lancamentos-pesquisa>
+
 <!--
 
 <app-categorias-pesquisa></app-categorias-pesquisa>

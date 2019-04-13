@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { LazyLoadEvent } from 'primeng/components/common/api';
 import { MessageService } from 'primeng/components/common/api';
+import { ConfirmationService } from 'primeng/api';
 
 import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
 
@@ -19,7 +20,8 @@ export class LancamentosPesquisaComponent implements OnInit {
   @ViewChild('tabela') tabela;
 
   constructor(private lancamentoService: LancamentoService,
-              private messageService: MessageService) {}
+              private messageService: MessageService,
+              private confirmation: ConfirmationService) {}
 
   ngOnInit() {
   }
@@ -38,15 +40,20 @@ export class LancamentosPesquisaComponent implements OnInit {
   }
 
   excluir(lancamento: any) {
-    this.lancamentoService.excluir(lancamento.codigo)
-      .then(() => {
-        if (this.tabela.first === 0) {
-          this.pesquisar();
-        } else {
-          this.tabela.first = 0;
-        }
-      });
-    this.messageService.add({severity: 'success', summary: 'Success Message', detail: 'Excluído com sucesso!'});
+    this.confirmation.confirm({
+      message: 'Deseja realmente excluir?',
+      accept: () => {
+        this.lancamentoService.excluir(lancamento.codigo)
+              .then(() => {
+                if (this.tabela.first === 0) {
+                  this.pesquisar();
+                } else {
+                  this.tabela.first = 0;
+                }
+              });
+        this.messageService.add({severity: 'success', summary: 'Success Message', detail: 'Excluído com sucesso!'});
+      },
+    });
   }
 
 }

@@ -4,8 +4,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 
-import { MessageService } from 'primeng/api';
+import { MessageService, ConfirmationService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdialog';
 
 import { AppComponent } from './app.component';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
@@ -27,13 +28,15 @@ import { CategoriaService } from './categorias/categoria.service';
     CategoriasModule,
     CoreModule,
     HttpClientModule,
-    ToastModule
+    ToastModule,
+    ConfirmDialogModule
   ],
   providers: [
     CategoriaService,
     LancamentoService,
     PessoaService,
-    MessageService
+    MessageService,
+    ConfirmationService
   ],
   bootstrap: [AppComponent]
 })
