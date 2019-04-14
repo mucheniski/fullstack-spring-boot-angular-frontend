@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-
+<router-outlet></router-outlet>
 <p-toast></p-toast>
 
 <p-confirmDialog header="Confirmação" icon="pi pi-question-circle" #opcao>
@@ -8,16 +8,3 @@
     <button type="button" pButton icon="pi pi-times" label="Não" (click)="opcao.reject()" ></button>
   </p-footer>
 </p-confirmDialog>
-
-<app-pessoa-cadastro></app-pessoa-cadastro>
-
-<!--
-
-  <app-categorias-pesquisa></app-categorias-pesquisa>
-
-  <app-pessoas-pesquisa></app-pessoas-pesquisa>
-
-  <app-lancamento-cadastro></app-lancamento-cadastro>
-  <app-lancamentos-pesquisa></app-lancamentos-pesquisa>
-
--->
