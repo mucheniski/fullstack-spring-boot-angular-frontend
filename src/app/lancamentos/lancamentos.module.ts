@@ -18,6 +18,7 @@ import { DataTableModule } from 'primeng/datatable';
 
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { SharedModule } from '../shared/shared.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -26,17 +27,20 @@ import { SharedModule } from '../shared/shared.module';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     BrowserModule,
+    BrowserAnimationsModule,
+    RouterModule,
+
     InputTextModule,
     ButtonModule,
-    DataTableModule,
     TooltipModule,
     InputTextareaModule,
     CalendarModule,
-    BrowserAnimationsModule,
     SelectButtonModule,
     DropdownModule,
-    FormsModule,
+    DataTableModule,
+
     CurrencyMaskModule,
     SharedModule
   ],
