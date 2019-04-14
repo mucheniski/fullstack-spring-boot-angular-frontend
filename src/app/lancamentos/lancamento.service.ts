@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 
 import * as moment from 'moment';
 
+import { Lancamento } from './lancamento';
+
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json', Authorization: 'Basic YWRtaW5AdGVzdGUuY29tOmFkbWlu' })
 };
@@ -43,6 +45,12 @@ export class LancamentoService {
       }
 
       return this.http.get(`${this.lancamentosUrl}?resumo&${params}`, httpOptions)
+        .toPromise()
+        .then(response => response);
+    }
+
+    salvar(lancamento: Lancamento): Promise<any> {
+      return this.http.post(this.lancamentosUrl, JSON.stringify(lancamento), httpOptions)
         .toPromise()
         .then(response => response);
     }

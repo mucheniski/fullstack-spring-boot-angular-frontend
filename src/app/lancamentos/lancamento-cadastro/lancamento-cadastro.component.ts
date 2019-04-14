@@ -1,6 +1,9 @@
 import { FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
+import { MessageService } from 'primeng/components/common/api';
+
+import { LancamentoService } from './../lancamento.service';
 import { CategoriaService } from './../../categorias/categoria.service';
 import { PessoaService } from './../../pessoas/pessoa.service';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
@@ -23,8 +26,10 @@ export class LancamentoCadastroComponent implements OnInit {
   lancamento = new Lancamento();
 
   constructor(
+    private lancamentoService: LancamentoService,
     private categoriaService: CategoriaService,
     private pessoaService: PessoaService,
+    private messageService: MessageService,
     private errorHandler: ErrorHandlerService
   ) { }
 
@@ -34,13 +39,19 @@ export class LancamentoCadastroComponent implements OnInit {
   }
 
   salvar(form: FormControl) {
-    console.log(this.lancamento);
+    this.lancamentoService.salvar(this.lancamento)
+          .then(() => {
+            this.messageService.add({severity: 'success', summary: 'Success Message', detail: 'Salvo com sucesso!'});
+            form.reset();
+            this.lancamento = new Lancamento();
+          })
+          .catch(erro => this.errorHandler.handle(erro));
   }
 
   carregarCategorias() {
     return this.categoriaService.listarTodas()
               .then(categorias => {
-                this.categorias = categorias.map(categoria => ({ label: categoria.nome + ' - ' + categoria.codigo , value: categoria.codigo }) );
+                this.categorias = categorias.map(categoria => ({ label: categoria.nome, value: categoria.codigo }) );
               })
               .catch(erro => this.errorHandler.handle(erro));
   }

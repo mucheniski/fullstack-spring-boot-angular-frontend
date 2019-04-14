@@ -36,17 +36,17 @@
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Categoria</label>
-        <p-dropdown [options]="categorias" placeholder="Selecione" ngModel name="categoria" [(ngModel)]="lancamento.categoria" #categoria="ngModel" required></p-dropdown>
+        <p-dropdown [options]="categorias" placeholder="Selecione" ngModel name="categoria" [(ngModel)]="lancamento.categoria.codigo" #categoria="ngModel" required></p-dropdown>
       </div>
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Pessoa</label>
-        <p-dropdown [options]="pessoas" [filter]="true" placeholder="Selecione" ngModel name="pessoa" [(ngModel)]="lancamento.pessoa" #pessoa="ngModel" required></p-dropdown>
+        <p-dropdown [options]="pessoas" [filter]="true" placeholder="Selecione" ngModel name="pessoa" [(ngModel)]="lancamento.pessoa.codigo" #pessoa="ngModel" required></p-dropdown>
       </div>
 
       <div class="ui-g-12 ui-fluid">
         <label>Observacao</label>
-        <textarea pInputTextarea name="observacao" [(ngModel)]="lancamento.Observacao" rows="3"></textarea>
+        <textarea pInputTextarea name="observacao" [(ngModel)]="lancamento.observacao" rows="3"></textarea>
       </div>
 
       <div class="ui-g-12">
