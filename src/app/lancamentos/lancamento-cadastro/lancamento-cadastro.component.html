@@ -7,12 +7,12 @@
       </div>
 
       <div class="ui-g-12">
-        <p-selectButton [options]="tipos" #tipo></p-selectButton>
+        <p-selectButton [options]="tipos" #tipo name="tipo" [(ngModel)]="lancamento.tipo"></p-selectButton>
       </div>
 
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>Vencimento</label>
-        <p-calendar dateFormat="dd/mm/yy" [showIcon]="true" ngModel name="vencimento" #vencimento="ngModel" required></p-calendar>
+        <p-calendar dateFormat="dd/mm/yy" [showIcon]="true" ngModel name="vencimento" #vencimento="ngModel" [(ngModel)]="lancamento.vencimento" required></p-calendar>
         <app-message [control]="vencimento" error="required" text="Por gentileza, informe um vencimento"></app-message>
       </div>
 
