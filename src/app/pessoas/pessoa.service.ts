@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import { Pessoa } from './pessoa';
+
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json', Authorization: 'Basic YWRtaW5AdGVzdGUuY29tOmFkbWlu' })
 };
@@ -37,6 +39,12 @@ export class PessoaService {
     }
 
     return this.http.get(`${this.pessoasUrl}?${params}`, httpOptions)
+      .toPromise()
+      .then(response => response);
+  }
+
+  salvar(pessoa: Pessoa): Promise<any> {
+    return this.http.post(this.pessoasUrl, JSON.stringify(pessoa), httpOptions)
       .toPromise()
       .then(response => response);
   }

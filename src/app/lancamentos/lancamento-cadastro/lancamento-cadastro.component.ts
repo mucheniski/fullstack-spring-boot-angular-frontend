@@ -41,7 +41,7 @@ export class LancamentoCadastroComponent implements OnInit {
   salvar(form: FormControl) {
     this.lancamentoService.salvar(this.lancamento)
           .then(() => {
-            this.messageService.add({severity: 'success', summary: 'Success Message', detail: 'Salvo com sucesso!'});
+            this.messageService.add({severity: 'success', summary: 'Sucesso!', detail: 'Salvo com sucesso!'});
             form.reset();
             this.lancamento = new Lancamento();
           })
