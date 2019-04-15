@@ -55,8 +55,8 @@ export class LancamentoService {
         .then(response => response);
     }
 
-    editar(lancamento: Lancamento): Promise<any> {
-      return this.http.put(`${this.lancamentosUrl}/${lancamento.codigo}`, httpOptions)
+    atualizar(lancamento: Lancamento): Promise<any> {
+      return this.http.put(`${this.lancamentosUrl}/${lancamento.codigo}`, JSON.stringify(lancamento), httpOptions)
         .toPromise()
         .then(response => {
           const lancamentoAtualizado = response as Lancamento;

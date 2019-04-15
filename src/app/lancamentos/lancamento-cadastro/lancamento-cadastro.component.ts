@@ -55,11 +55,28 @@ export class LancamentoCadastroComponent implements OnInit {
   }
 
   salvar(form: FormControl) {
+    if (this.editando) {
+      this.atualizar(form);
+    } else {
+      this.novo(form);
+    }
+  }
+
+  novo(form: FormControl) {
     this.lancamentoService.salvar(this.lancamento)
           .then(() => {
             this.messageService.add({severity: 'success', summary: 'Sucesso!', detail: 'Salvo com sucesso!'});
             form.reset();
             this.lancamento = new Lancamento();
+          })
+          .catch(erro => this.errorHandler.handle(erro));
+  }
+
+  atualizar(form: FormControl) {
+    this.lancamentoService.atualizar(this.lancamento)
+          .then( lancamento => {
+            this.messageService.add({severity: 'success', summary: 'Sucesso!', detail: 'Atualizado com sucesso!'});
+            this.lancamento = lancamento;
           })
           .catch(erro => this.errorHandler.handle(erro));
   }
@@ -80,7 +97,7 @@ export class LancamentoCadastroComponent implements OnInit {
               .catch(erro => this.errorHandler.handle(erro));
   }
 
-  // Verifica se o arquivo está sendo editado ou é uma criação de novo arquivo para o título
+  // Verifica se o arquivo está sendo editado ou é uma criação de novo arquivo
   get editando() {
     return Boolean(this.lancamento.codigo);
   }
