@@ -38,7 +38,7 @@
 
         <p-column header="Ações" styleClass="col-acoes">
           <ng-template pTemplate="body" let-pessoa="rowData">
-            <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
+            <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" [routerLink]="['/pessoas', pessoa.codigo]"></a>
             <button pButton icon="pi pi-trash" pTooltip="Excluir" (click)="excluir(pessoa)" tooltipPosition="top"></button>
           </ng-template>
         </p-column>
@@ -46,7 +46,7 @@
     </div>
 
     <div class="ui-g-12">
-      <a pButton type="submit" label="Nova Pessoa"></a>
+      <a routerLink="/pessoas/cadastro" pButton label="Nova Pessoa"></a>
     </div>
 
   </div>

@@ -49,6 +49,16 @@ export class LancamentoService {
         .then(response => response);
     }
 
+    buscarPorCodigo(codigo: number): Promise<any> {
+      return this.http.get(`${this.lancamentosUrl}/${codigo}`, httpOptions)
+        .toPromise()
+        .then(response => {
+          const lancamento = response as Lancamento;
+          this.converterStringsParaDatas([lancamento]);
+          return lancamento;
+        });
+    }
+
     salvar(lancamento: Lancamento): Promise<any> {
       return this.http.post(this.lancamentosUrl, JSON.stringify(lancamento), httpOptions)
         .toPromise()
@@ -62,16 +72,6 @@ export class LancamentoService {
           const lancamentoAtualizado = response as Lancamento;
           this.converterStringsParaDatas([lancamentoAtualizado]);
           return lancamentoAtualizado;
-        });
-    }
-
-    buscarPorCodigo(codigo: number): Promise<any> {
-      return this.http.get(`${this.lancamentosUrl}/${codigo}`, httpOptions)
-        .toPromise()
-        .then(response => {
-          const lancamento = response as Lancamento;
-          this.converterStringsParaDatas([lancamento]);
-          return lancamento;
         });
     }
 

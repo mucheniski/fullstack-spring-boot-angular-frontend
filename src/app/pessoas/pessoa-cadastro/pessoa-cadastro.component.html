@@ -3,7 +3,7 @@
     <div class="ui-g">
 
       <div class="ui-g-12">
-        <h1>Nova Pessoa</h1>
+        <h1>Pessoa: {{ editando ? 'Editar ' + pessoa.codigo : 'Nova' }}</h1>
       </div>
 
       <div class="ui-g-12 ui-md-12 ui-fluid">
@@ -56,8 +56,7 @@
 
       <div class="ui-g-12">
         <button pButton type="submit" label="Salvar"></button>
-        <button pButton type="button" label="Novo" class="ui-button-success"></button>
-        <a href="javascript:;">Voltar para pesquisa</a>
+        <a routerLink="/pessoas">Voltar para pesquisa</a>
       </div>
 
     </div>

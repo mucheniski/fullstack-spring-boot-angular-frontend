@@ -30,7 +30,6 @@ import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos
     FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
-
     InputTextModule,
     ButtonModule,
     TooltipModule,
@@ -39,7 +38,6 @@ import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos
     SelectButtonModule,
     DropdownModule,
     DataTableModule,
-
     CurrencyMaskModule,
     SharedModule,
 

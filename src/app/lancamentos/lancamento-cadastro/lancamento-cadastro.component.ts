@@ -29,17 +29,17 @@ export class LancamentoCadastroComponent implements OnInit {
 
   constructor(
     private title: Title,
+    private route: ActivatedRoute,
+    private router: Router,
     private lancamentoService: LancamentoService,
     private categoriaService: CategoriaService,
     private pessoaService: PessoaService,
     private messageService: MessageService,
-    private errorHandler: ErrorHandlerService,
-    private route: ActivatedRoute,
-    private router: Router
+    private errorHandler: ErrorHandlerService
   ) { }
 
   ngOnInit() {
-    this.title.setTitle('Novo Lançamentos');
+    this.title.setTitle('Lançamentos');
     const codigoLancamento = this.route.snapshot.params['codigo'];
 
     if (codigoLancamento) {
@@ -54,7 +54,6 @@ export class LancamentoCadastroComponent implements OnInit {
     this.lancamentoService.buscarPorCodigo(codigo)
           .then(lancamento => {
             this.lancamento = lancamento;
-            this.atualizarTituloEdicao();
           })
           .catch(erro => this.errorHandler.handle(erro));
   }
@@ -81,7 +80,6 @@ export class LancamentoCadastroComponent implements OnInit {
           .then( lancamento => {
             this.messageService.add({severity: 'success', summary: 'Sucesso!', detail: 'Atualizado com sucesso!'});
             this.lancamento = lancamento;
-            this.atualizarTituloEdicao();
           })
           .catch(erro => this.errorHandler.handle(erro));
   }
@@ -102,13 +100,9 @@ export class LancamentoCadastroComponent implements OnInit {
               .catch(erro => this.errorHandler.handle(erro));
   }
 
-  // Verifica se o arquivo está sendo editado ou é uma criação de novo arquivo
+  // Verifica se o registro está sendo editado ou é uma criação de novo
   get editando() {
     return Boolean(this.lancamento.codigo);
-  }
-
-  atualizarTituloEdicao() {
-    this.title.setTitle(`Editar: ${this.lancamento.codigo}`);
   }
 
 }

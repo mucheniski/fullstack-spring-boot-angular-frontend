@@ -43,10 +43,28 @@ export class PessoaService {
       .then(response => response);
   }
 
+  buscarPorCodigo(codigo: number): Promise<any> {
+    return this.http.get(`${this.pessoasUrl}/${codigo}`, httpOptions)
+      .toPromise()
+      .then(response => {
+        const pessoa = response as Pessoa;
+        return pessoa;
+      });
+  }
+
   salvar(pessoa: Pessoa): Promise<any> {
     return this.http.post(this.pessoasUrl, JSON.stringify(pessoa), httpOptions)
       .toPromise()
       .then(response => response);
+  }
+
+  atualizar(pessoa: Pessoa): Promise<any> {
+    return this.http.put(`${this.pessoasUrl}/${pessoa.codigo}`, JSON.stringify(pessoa), httpOptions)
+      .toPromise()
+      .then(response => {
+        const pessoaAtualizada = response as Pessoa;
+        return pessoaAtualizada;
+      });
   }
 
   excluir(codigo: number): Promise<void> {
@@ -56,7 +74,6 @@ export class PessoaService {
   }
 
   alterarStatus(codigo: number, novoStatus: boolean): Promise<void> {
-
     return this.http.put(`${this.pessoasUrl}/${codigo}/ativo`, novoStatus, httpOptions)
     .toPromise()
     .then(() => null);

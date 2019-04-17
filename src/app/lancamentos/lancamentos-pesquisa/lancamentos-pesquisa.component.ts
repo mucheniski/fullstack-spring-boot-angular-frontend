@@ -28,7 +28,7 @@ export class LancamentosPesquisaComponent implements OnInit {
               private title: Title) {}
 
   ngOnInit() {
-    this.title.setTitle('Pesquisa de Lançamentos');
+    this.title.setTitle('Lançamentos');
   }
 
   pesquisar(pagina = 0) {

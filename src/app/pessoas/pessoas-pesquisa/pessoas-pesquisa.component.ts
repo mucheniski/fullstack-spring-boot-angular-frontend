@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 import { LazyLoadEvent } from 'primeng/components/common/api';
 import { MessageService } from 'primeng/components/common/api';
@@ -20,12 +21,14 @@ export class PessoasPesquisaComponent implements OnInit {
   pessoas = [];
   @ViewChild('tabela') tabela;
 
-  constructor(private pessoaService: PessoaService,
+  constructor(private title: Title,
+              private pessoaService: PessoaService,
               private messageService: MessageService,
               private confirmation: ConfirmationService,
               private errorHandle: ErrorHandlerService) {}
 
   ngOnInit(): void {
+    this.title.setTitle('Pessoas');
   }
 
   pesquisar(pagina = 0) {

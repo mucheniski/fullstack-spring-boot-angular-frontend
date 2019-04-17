@@ -1,5 +1,7 @@
 import { FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { MessageService } from 'primeng/components/common/api';
 
@@ -16,22 +18,60 @@ export class PessoaCadastroComponent implements OnInit {
 
   pessoa = new Pessoa();
 
-  constructor(private pessoaService: PessoaService,
+  constructor(private title: Title,
+              private route: ActivatedRoute,
+              private router: Router,
+              private pessoaService: PessoaService,
               private messageService: MessageService,
               private errorHandler: ErrorHandlerService
   ) { }
 
   ngOnInit() {
+    this.title.setTitle('Pessoas');
+    const codigoLancamento = this.route.snapshot.params['codigo'];
+
+    if (codigoLancamento) {
+      this.buscarPorCodigo(codigoLancamento);
+    }
+  }
+
+  buscarPorCodigo(codigo: number) {
+    this.pessoaService.buscarPorCodigo(codigo)
+          .then(pessoa => {
+            this.pessoa = pessoa;
+          })
+          .catch(erro => this.errorHandler.handle(erro));
   }
 
   salvar(form: FormControl) {
+    if (this.editando) {
+      this.atualizar(form);
+    } else {
+      this.novo(form);
+    }
+  }
+
+  novo(form: FormControl) {
     this.pessoaService.salvar(this.pessoa)
-          .then(() => {
+          .then(pessoa => {
             this.messageService.add({severity: 'success', summary: 'Sucesso!', detail: 'Salvo com sucesso!'});
-            form.reset();
-            this.pessoa = new Pessoa();
+            this.router.navigate(['/pessoas', pessoa.codigo]);
           })
           .catch(erro => this.errorHandler.handle(erro));
+  }
+
+  atualizar(form: FormControl) {
+    this.pessoaService.atualizar(this.pessoa)
+          .then( pessoa => {
+            this.messageService.add({severity: 'success', summary: 'Sucesso!', detail: 'Atualizado com sucesso!'});
+            this.pessoa = pessoa;
+          })
+          .catch(erro => this.errorHandler.handle(erro));
+  }
+
+  // Verifica se o registro está sendo editado ou é uma criação de novo
+  get editando() {
+    return Boolean(this.pessoa.codigo);
   }
 
 }
