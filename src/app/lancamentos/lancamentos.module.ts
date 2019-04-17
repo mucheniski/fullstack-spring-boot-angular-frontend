@@ -4,9 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
-import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
-
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/components/tooltip/tooltip';
@@ -18,7 +15,10 @@ import { DataTableModule } from 'primeng/datatable';
 
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { SharedModule } from '../shared/shared.module';
-import { RouterModule } from '@angular/router';
+
+import { LancamentosRoutingModule } from './lancamentos-routing.module';
+import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
+import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,6 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
-    RouterModule,
 
     InputTextModule,
     ButtonModule,
@@ -42,7 +41,9 @@ import { RouterModule } from '@angular/router';
     DataTableModule,
 
     CurrencyMaskModule,
-    SharedModule
+    SharedModule,
+
+    LancamentosRoutingModule
   ],
   exports: []
 })
