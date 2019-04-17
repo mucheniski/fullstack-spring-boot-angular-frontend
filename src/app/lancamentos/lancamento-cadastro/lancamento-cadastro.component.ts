@@ -9,6 +9,7 @@ import { CategoriaService } from './../../categorias/categoria.service';
 import { PessoaService } from './../../pessoas/pessoa.service';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { Lancamento } from '../lancamento';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -27,6 +28,7 @@ export class LancamentoCadastroComponent implements OnInit {
   lancamento = new Lancamento();
 
   constructor(
+    private title: Title,
     private lancamentoService: LancamentoService,
     private categoriaService: CategoriaService,
     private pessoaService: PessoaService,
@@ -37,6 +39,7 @@ export class LancamentoCadastroComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.title.setTitle('Novo Lançamentos');
     const codigoLancamento = this.route.snapshot.params['codigo'];
 
     if (codigoLancamento) {
@@ -51,6 +54,7 @@ export class LancamentoCadastroComponent implements OnInit {
     this.lancamentoService.buscarPorCodigo(codigo)
           .then(lancamento => {
             this.lancamento = lancamento;
+            this.atualizarTituloEdicao();
           })
           .catch(erro => this.errorHandler.handle(erro));
   }
@@ -77,6 +81,7 @@ export class LancamentoCadastroComponent implements OnInit {
           .then( lancamento => {
             this.messageService.add({severity: 'success', summary: 'Sucesso!', detail: 'Atualizado com sucesso!'});
             this.lancamento = lancamento;
+            this.atualizarTituloEdicao();
           })
           .catch(erro => this.errorHandler.handle(erro));
   }
@@ -100,6 +105,10 @@ export class LancamentoCadastroComponent implements OnInit {
   // Verifica se o arquivo está sendo editado ou é uma criação de novo arquivo
   get editando() {
     return Boolean(this.lancamento.codigo);
+  }
+
+  atualizarTituloEdicao() {
+    this.title.setTitle(`Editar: ${this.lancamento.codigo}`);
   }
 
 }
