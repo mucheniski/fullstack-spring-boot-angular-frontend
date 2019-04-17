@@ -44,9 +44,6 @@ import { RouterModule } from '@angular/router';
     CurrencyMaskModule,
     SharedModule
   ],
-  exports: [
-    LancamentosPesquisaComponent,
-    LancamentoCadastroComponent
-  ]
+  exports: []
 })
 export class LancamentosModule { }
