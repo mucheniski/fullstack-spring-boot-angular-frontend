@@ -1,7 +1,7 @@
+import { Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { Title } from '@angular/platform-browser';
 
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdialog';
@@ -13,6 +13,7 @@ import { CategoriaService } from '../categorias/categoria.service';
 import { LancamentoService } from '../lancamentos/lancamento.service';
 import { PessoaService } from '../pessoas/pessoa.service';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
+import { AuthService } from './../seguranca/auth.service';
 
 @NgModule({
   declarations: [
@@ -31,13 +32,15 @@ import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component'
     ConfirmDialogModule
   ],
   providers: [
+    Title,
+    MessageService,
+    ConfirmationService,
+
     ErrorHandlerService,
     CategoriaService,
     LancamentoService,
     PessoaService,
-    MessageService,
-    ConfirmationService,
-    Title
+    AuthService
   ]
 })
 export class CoreModule { }

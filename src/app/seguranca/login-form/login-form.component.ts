@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Usuario } from '../usuario';
 import { MessageService } from 'primeng/components/common/api';
+
+import { Usuario } from '../usuario';
+import { AuthService } from './../auth.service';
 
 @Component({
   selector: 'app-login-form',
@@ -14,12 +16,14 @@ export class LoginFormComponent implements OnInit {
 
   constructor(
     private messageService: MessageService,
+    private auth: AuthService
   ) { }
 
   ngOnInit() {
   }
 
   login(usuario: string, senha: string) {
+    this.auth.login(usuario, senha);
   }
 
 }
