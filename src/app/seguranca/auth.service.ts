@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded', Authorization: 'Basic YW5ndWxhcjpAbmd1bEByMA==' })
@@ -14,7 +15,8 @@ export class AuthService {
   jwtPayload: any;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private jwtHelper: JwtHelperService
   ) { }
 
   login(usuario: string, senha: string): Promise<void> {
@@ -23,11 +25,15 @@ export class AuthService {
     return this.http.post(this.oauthTokenUrl, body, httpOptions)
           .toPromise()
           .then( response => {
-            console.log(response);
+            this.armazenarToken(response);
           })
           .catch(response => {
             console.log(response);
           });
+  }
+
+  private armazenarToken(response: any) {
+    this.jwtPayload = this.jwtHelper.decodeToken(response.access_token);
   }
 
 }

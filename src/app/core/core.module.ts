@@ -1,3 +1,4 @@
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -35,6 +36,7 @@ import { AuthService } from './../seguranca/auth.service';
     Title,
     MessageService,
     ConfirmationService,
+    JwtHelperService,
 
     ErrorHandlerService,
     CategoriaService,
