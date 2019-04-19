@@ -11,8 +11,11 @@ const httpOptions = {
 export class AuthService {
 
   oauthTokenUrl = 'http://localhost:8080/oauth/token';
+  jwtPayload: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
   login(usuario: string, senha: string): Promise<void> {
     const body = `username=${usuario}&password=${senha}&grant_type=password`;

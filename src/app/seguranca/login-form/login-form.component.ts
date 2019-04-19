@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { MessageService } from 'primeng/components/common/api';
-
 import { Usuario } from '../usuario';
 import { AuthService } from './../auth.service';
 
@@ -15,7 +13,6 @@ export class LoginFormComponent implements OnInit {
   usuario = new Usuario();
 
   constructor(
-    private messageService: MessageService,
     private auth: AuthService
   ) { }
 
