@@ -51,6 +51,12 @@ export class AuthService {
     }
   }
 
+  // return Boolean
+  tokenInvalido() {
+    const token = localStorage.getItem('token');
+    return !token || this.jwtHelper.isTokenExpired(token);
+  }
+
   refreshToken(): Promise<void> {
 
     const body = 'grant_type=refresh_token';
