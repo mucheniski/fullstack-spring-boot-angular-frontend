@@ -24,18 +24,17 @@ export class AuthService {
   login(usuario: string, senha: string): Promise<void> {
     const body = `username=${usuario}&password=${senha}&grant_type=password`;
 
-    return this.http.post(this.oauthTokenUrl, body, httpOptions)
+    return this.http.post<any>(this.oauthTokenUrl, body, httpOptions)
           .toPromise()
           .then( response => {
-            this.armazenarToken(response);
+            this.armazenarToken(response.access_token);
           })
           .catch(response => {
             console.log(response);
           });
   }
 
-  private armazenarToken(response: any) {
-    const token = response.access_token;
+  private armazenarToken(token: string) {
     this.jwtPayload = this.jwtHelper.decodeToken(token);
     localStorage.setItem('token', token);
   }
