@@ -17,7 +17,9 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private jwtHelper: JwtHelperService
-  ) { }
+  ) {
+    this.carregarToken();
+  }
 
   login(usuario: string, senha: string): Promise<void> {
     const body = `username=${usuario}&password=${senha}&grant_type=password`;
@@ -33,7 +35,16 @@ export class AuthService {
   }
 
   private armazenarToken(response: any) {
-    this.jwtPayload = this.jwtHelper.decodeToken(response.access_token);
+    const token = response.access_token;
+    this.jwtPayload = this.jwtHelper.decodeToken(token);
+    localStorage.setItem('token', token);
+  }
+
+  private carregarToken() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.armazenarToken(token);
+    }
   }
 
 }
