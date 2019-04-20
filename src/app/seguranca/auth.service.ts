@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded', Authorization: 'Basic YW5ndWxhcjpAbmd1bEByMA==' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded', Authorization: 'Basic YW5ndWxhcjpAbmd1bEByMA=='}), withCredentials: true
 };
 
 @Injectable({
@@ -49,6 +49,23 @@ export class AuthService {
     if (token) {
       this.armazenarToken(token);
     }
+  }
+
+  refreshToken(): Promise<void> {
+
+    const body = 'grant_type=refresh_token';
+
+    return this.http.post<any>(this.oauthTokenUrl, body, httpOptions)
+            .toPromise()
+            .then(response => {
+              this.armazenarToken(response.access_token);
+              console.log('Access Token!');
+              return Promise.resolve(null);
+            })
+            .catch(response =>{
+              console.log('Erro ao renovar token: ' + response);
+              return Promise.resolve(null);
+            });
   }
 
   temPermissao(permissao: string) {
