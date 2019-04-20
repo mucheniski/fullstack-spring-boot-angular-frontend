@@ -21,14 +21,16 @@ export class ErrorHandlerService {
           try {
             msg = errorResponse.error[0].mensagemUsuario;
           } catch (e) { }
-
           console.error('Ocorreu um erro', errorResponse);
+
+          if (errorResponse.status === 403) {
+            msg = 'Você não tem permissão para executar esta ação!';
+          }
 
         } else {
           msg = 'Erro ao processar serviço remoto. Tente novamente!';
           console.error('Ocorreu um erro', errorResponse);
     }
-
     this.messageService.add({severity: 'error', summary: 'Erro:', detail: msg});
   }
 
