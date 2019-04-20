@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Pessoa } from './pessoa';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json', Authorization: 'Basic YWRtaW5AdGVzdGUuY29tOmFkbWlu' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json', Authorization: 'Basic YW5ndWxhcjpAbmd1bEByMA==' })
 };
 
 export class PessoaFiltro {
