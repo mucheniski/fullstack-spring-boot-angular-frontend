@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+import { environment } from 'src/environments/environment.prod';
+
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json', Authorization: 'Basic YWRtaW5AdGVzdGUuY29tOmFkbWlu' })
 };
@@ -10,9 +12,11 @@ const httpOptions = {
 })
 export class CategoriaService {
 
-  private categoriasUrl = 'http://localhost:8080/categorias';
+  private categoriasUrl: string;
 
-  constructor( private http: HttpClient ) { }
+  constructor( private http: HttpClient ) {
+    this.categoriasUrl = `${environment.apiUrl}/categorias`;
+  }
 
   listarTodas(): Promise<any> {
     return this.http.get(this.categoriasUrl, httpOptions)

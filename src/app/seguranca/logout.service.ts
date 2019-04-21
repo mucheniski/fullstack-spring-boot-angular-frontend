@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { InterceptaHttp } from './intercepta-http';
 import { AuthService } from './auth.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class LogoutService {
     private http: InterceptaHttp,
     private auth: AuthService
   ) {
-    this.tokensRenokeUrl = `http://localhost:8080/tokens/revoke`;
+    this.tokensRenokeUrl = `${environment.apiUrl}/tokens/revoke`;
   }
 
   logout() {

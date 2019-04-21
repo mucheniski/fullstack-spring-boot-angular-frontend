@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Pessoa } from './pessoa';
+import { environment } from 'src/environments/environment.prod';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json', Authorization: 'Basic YW5ndWxhcjpAbmd1bEByMA==' })
@@ -18,9 +19,11 @@ export class PessoaFiltro {
 })
 export class PessoaService {
 
-  pessoasUrl = 'http://localhost:8080/pessoas';
+  pessoasUrl: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.pessoasUrl = `${environment.apiUrl}/pessoas`;
+  }
 
   listarTodas(): Promise<any> {
     return this.http.get<any>(this.pessoasUrl, httpOptions)
