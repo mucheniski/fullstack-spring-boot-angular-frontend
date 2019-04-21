@@ -10,6 +10,7 @@ import { SegurancaRoutingModule } from './seguranca-routing.module';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { AuthGuard } from './auth.guard';
 import { LogoutService } from './logout.service';
+import { environment } from '../../environments/environment';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -22,9 +23,10 @@ export function tokenGetter() {
 
     JwtModule.forRoot({
       config: {
+        // tslint:disable-next-line:object-literal-shorthand
         tokenGetter: tokenGetter,
-        whitelistedDomains: [ /localhost:8080/ ],
-        blacklistedRoutes: [/\/oauth\/token/]
+        whitelistedDomains: environment.tokenWhitelistedDomains,
+        blacklistedRoutes: environment.tokenBlacklistedRoutes
       }
     }),
     InputTextModule,
