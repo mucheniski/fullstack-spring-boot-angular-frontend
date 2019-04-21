@@ -38,8 +38,8 @@
 
         <p-column header="Ações" styleClass="col-acoes">
           <ng-template pTemplate="body" let-pessoa="rowData">
-            <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" [routerLink]="['/pessoas', pessoa.codigo]"></a>
-            <button pButton icon="pi pi-trash" pTooltip="Excluir" (click)="excluir(pessoa)" tooltipPosition="top"></button>
+            <div class="btn-acao"><a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" [routerLink]="['/pessoas', pessoa.codigo]"></a></div>
+            <div class="btn-acao"><button pButton icon="pi pi-trash" pTooltip="Excluir" (click)="excluir(pessoa)" tooltipPosition="top"></button></div>
           </ng-template>
         </p-column>
       </p-dataTable>
