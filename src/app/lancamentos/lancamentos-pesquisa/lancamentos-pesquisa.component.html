@@ -55,8 +55,8 @@
 
           <p-column header="Ações" styleClass="col-acoes">
             <ng-template pTemplate="body" let-lancamento="rowData">
-              <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" [routerLink]="['/lancamentos', lancamento.codigo]"></a>
-              <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top" (click)="excluir(lancamento)" [disabled]="!auth.temPermissao('ROLE_REMOVER_LANCAMENTO')"></button>
+              <div class="btn-acao"><a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" [routerLink]="['/lancamentos', lancamento.codigo]"></a></div>
+              <div class="btn-acao"><button pButton icon="pi pi-trash" class="btn-acao" pTooltip="Excluir" tooltipPosition="top" (click)="excluir(lancamento)" [disabled]="!auth.temPermissao('ROLE_REMOVER_LANCAMENTO')"></button></div>
             </ng-template>
           </p-column>
 
