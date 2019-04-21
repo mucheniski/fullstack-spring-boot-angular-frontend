@@ -1,71 +1,61 @@
 <div class="container">
   <div class="ui-g">
     <form autocomplete="off" (ngSubmit)="pesquisar()">
-
       <div class="ui-g-12">
         <h1>Lançamentos</h1>
       </div>
-
       <div class="ui-g-12 ui-fluid">
         <label>Descrição</label>
         <input type="text" pInputText name="descricao" [(ngModel)]="filtro.descricao" />
       </div>
-
       <div class="ui-g-12">
         <label style="display: block">Vencimento</label>
         <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }" name="dataVencimentoDe" [(ngModel)]="filtro.dataVencimentoDe"></p-calendar>
-
         <label>até</label>
         <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }" name="dataVencimentoAte" [(ngModel)]="filtro.dataVencimentoAte"></p-calendar>
       </div>
-
       <div class="ui-g-12">
         <button pButton type="submit" label="Pesquisar"></button>
       </div>
-
     </form>
   </div>
-
   <div class="ui-g">
     <div class="ui-g-12">
-      <p-dataTable #tabela [value]="lancamentos" [responsive]="true" emptyMessage="Nenhum registro encontrado!"
-      [paginator]="true" [rows]="filtro.itensPorPagina" [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="atualizarPagina($event)">
-
-          <p-column header="Pessoa" field="pessoa"></p-column>
-
-          <p-column header="Descrição" field="descricao"></p-column>
-
-          <p-column header="Vencimento" field="dataVencimento" styleClass="col-data">
-            <ng-template let-lancamento="rowData" pTemplate="body">
-              {{ lancamento.dataVencimento | date: 'dd/MM/yyyy' }}
-            </ng-template>
-          </p-column>
-
-          <p-column header="Pagamento" field="dataPagamento" styleClass="col-data">
-            <ng-template let-lancamento="rowData" pTemplate="body">
-              {{ lancamento.dataPagamento | date: 'dd/MM/yyyy' }}
-            </ng-template>
-          </p-column>
-
-          <p-column header="Valor" field="valor" styleClass="col-valor">
-            <ng-template let-lancamento="rowData" pTemplate="body">
-              <span [style.color]="lancamento.tipo === 'DESPESA' ? 'red' : 'blue'" >{{ lancamento.valor | currency: 'BRL':'R$ ':'1.2-2' }}</span>
-            </ng-template>
-          </p-column>
-
-          <p-column header="Ações" styleClass="col-acoes">
-            <ng-template pTemplate="body" let-lancamento="rowData">
-              <div class="btn-acao"><a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" [routerLink]="['/lancamentos', lancamento.codigo]"></a></div>
+      <p-table #tabela [value]="lancamentos" [responsive]="true" [paginator]="true" [rows]="filtro.itensPorPagina" [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="atualizarPagina($event)">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Pessoa</th>
+            <th>Descrição</th>
+            <th class="col-data-header">Vencimento</th>
+            <th class="col-data-header">Pagamento</th>
+            <th class="col-valor-header">Valor</th>
+            <th class="col-acoes-header">Ações</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-lancamento>
+          <tr>
+            <td>{{ lancamento.pessoa }}</td>
+            <td>{{ lancamento.descricao }}</td>
+            <td class="col-data">{{ lancamento.dataVencimento | date: 'dd/MM/yyyy' }}</td>
+            <td class="col-data">{{ lancamento.dataPagamento | date: 'dd/MM/yyyy' }}</td>
+            <td class="col-valor" [style.color]="lancamento.tipo === 'DESPESA' ? 'red' : 'blue'">{{ lancamento.valor | currency: 'BRL':'R$ ':'1.2-2' }}</td>
+            <td class="col-acoes">
+              <div class="btn-acao"><button pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" [routerLink]="['/lancamentos', lancamento.codigo]"></button></div>
               <div class="btn-acao"><button pButton icon="pi pi-trash" class="btn-acao" pTooltip="Excluir" tooltipPosition="top" (click)="excluir(lancamento)" [disabled]="!auth.temPermissao('ROLE_REMOVER_LANCAMENTO')"></button></div>
-            </ng-template>
-          </p-column>
-
-        </p-dataTable>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="6">
+              Nenhum registro encontrado!
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
     </div>
-
     <div class="ui-g-12">
       <a routerLink="/lancamentos/cadastro" pButton label="Novo Lançamento"></a>
     </div>
-
   </div>
 </div>

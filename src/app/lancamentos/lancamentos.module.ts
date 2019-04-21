@@ -11,7 +11,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CalendarModule } from 'primeng/calendar';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { DropdownModule } from 'primeng/dropdown';
-import { DataTableModule } from 'primeng/datatable';
+import { TableModule } from 'primeng/table';
 
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { SharedModule } from '../shared/shared.module';
@@ -37,7 +37,7 @@ import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos
     CalendarModule,
     SelectButtonModule,
     DropdownModule,
-    DataTableModule,
+    TableModule,
     CurrencyMaskModule,
     SharedModule,
 
