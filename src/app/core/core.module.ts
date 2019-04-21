@@ -16,6 +16,7 @@ import { PessoaService } from '../pessoas/pessoa.service';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
 import { NaoAutorizadoComponent } from './nao-autorizado.component';
 import { AuthService } from './../seguranca/auth.service';
+import { InterceptaHttp } from '../seguranca/intercepta-http';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { AuthService } from './../seguranca/auth.service';
     ConfirmationService,
     JwtHelperService,
 
+    InterceptaHttp,
     ErrorHandlerService,
     CategoriaService,
     LancamentoService,
