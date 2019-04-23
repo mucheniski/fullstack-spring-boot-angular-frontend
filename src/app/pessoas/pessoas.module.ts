@@ -1,7 +1,6 @@
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
@@ -31,7 +30,6 @@ import { PessoasRoutingModule } from './pessoas-routing.module';
     TooltipModule,
     InputTextareaModule,
     CalendarModule,
-    BrowserAnimationsModule,
     SelectButtonModule,
     DropdownModule,
     InputMaskModule,
