@@ -1,54 +1,57 @@
 <div class="container">
   <div class="ui-g">
     <form autocomplete="off" (ngSubmit)="pesquisar()">
-
       <div class="ui-g-12">
         <h1>Pessoas</h1>
       </div>
-
       <div class="ui-g-12 ui-fluid">
         <label>Nome:</label>
         <input type="text" pInputText name="nome" [(ngModel)]="filtro.nome" />
       </div>
-
       <div class="ui-g-12">
         <button pButton type="submit" label="Pesquisar"></button>
       </div>
-
     </form>
   </div>
-
   <div class="ui-g">
     <div class="ui-g-12">
-      <p-dataTable #tabela [value]="pessoas" [responsive]="true" emptyMessage="Nenhum registro encontrado!"
-      [paginator]="true" [rows]="filtro.itensPorPagina" [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="atualizarPagina($event)">
-
-        <p-column header="Código" field="codigo"></p-column>
-        <p-column header="Nome" field="nome"></p-column>
-        <p-column header="Cidade" field="endereco.cidade"></p-column>
-        <p-column header="Estado" field="endereco.estado"></p-column>
-
-        <p-column header="Status" field="ativo">
-          <ng-template let-pessoa="rowData" pTemplate="body">
+      <p-table #tabela [value]="pessoas" [responsive]="true" [paginator]="true" [rows]="filtro.itensPorPagina" [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="atualizarPagina($event)">
+        <ng-template pTemplate="header">
+          <tr>
+            <th class="col-codigo-header">Código</th>
+            <th>Nome</th>
+            <th>Cidade</th>
+            <th>Estado</th>
+            <th class="col-status-header">Status</th>
+            <th class="col-acoes-header">Ações</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-pessoa>
+          <tr>
+            <td class="col-codigo">{{ pessoa.codigo }}</td>
+            <td>{{ pessoa.nome }}</td>
+            <td>{{ pessoa.endereco.cidade }}</td>
+            <td>{{ pessoa.endereco.estado }}</td>
+            <td class="col-status">
               <a href="javascript:;" [pTooltip]="pessoa.ativo ? 'Desativar' : 'Ativar' " (click)="alterarStatus(pessoa)" tooltipPosition="top">
-                {{ pessoa.ativo ? 'Ativo' : 'Inativo' }}
+              {{ pessoa.ativo ? 'Ativo' : 'Inativo' }}
               </a>
-          </ng-template>
-        </p-column>
-
-        <p-column header="Ações" styleClass="col-acoes">
-          <ng-template pTemplate="body" let-pessoa="rowData">
-            <div class="btn-acao"><a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" [routerLink]="['/pessoas', pessoa.codigo]"></a></div>
-            <div class="btn-acao"><button pButton icon="pi pi-trash" pTooltip="Excluir" (click)="excluir(pessoa)" tooltipPosition="top"></button></div>
-          </ng-template>
-        </p-column>
-      </p-dataTable>
+            </td>
+            <td class="col-acoes">
+              <div class="btn-acao"><button pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" [routerLink]="['/pessoas', pessoa.codigo]"></button></div>
+              <div class="btn-acao"><button pButton icon="pi pi-trash" pTooltip="Excluir" (click)="excluir(pessoa)" tooltipPosition="top"></button></div>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="6">Nenhum registro encontrado!</td>
+          </tr>
+        </ng-template>
+      </p-table>
     </div>
-
     <div class="ui-g-12">
       <a routerLink="/pessoas/cadastro" pButton label="Nova Pessoa"></a>
     </div>
-
   </div>
-
 </div>
