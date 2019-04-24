@@ -78,15 +78,17 @@ export class LancamentoCadastroComponent implements OnInit {
     this.lancamentoService.buscarPorCodigo(codigo)
           .then(lancamento => {
             // this.lancamento = lancamento;
-            this.formulario.setValue(lancamento);
+            this.formulario.patchValue(lancamento);
           })
           .catch(erro => this.errorHandler.handle(erro));
   }
 
   salvar() {
     if (this.editando) {
+      console.log('entroun no atualizar: ' + this.formulario);
       this.atualizar();
     } else {
+      console.log('entroun no novo: ' + this.formulario);
       this.novo();
     }
   }
@@ -105,7 +107,7 @@ export class LancamentoCadastroComponent implements OnInit {
           .then( lancamento => {
             this.messageService.add({severity: 'success', summary: 'Sucesso!', detail: 'Atualizado com sucesso!'});
             // this.lancamento = lancamento;
-            this.formulario.setValue(lancamento);
+            this.formulario.patchValue(lancamento);
           })
           .catch(erro => this.errorHandler.handle(erro));
   }
