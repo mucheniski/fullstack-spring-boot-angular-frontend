@@ -20,8 +20,6 @@ export class AuthGuard implements CanActivate {
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
     if (this.auth.tokenInvalido) {
-      console.log('Navegação com access token inválido. Obtendo novo token...');
-
       return this.auth.refreshToken()
               .then(() => {
                 if (this.auth.tokenInvalido()) {

@@ -1,5 +1,5 @@
 import { Title } from '@angular/platform-browser';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -9,7 +9,6 @@ import { LancamentoService } from './../lancamento.service';
 import { CategoriaService } from './../../categorias/categoria.service';
 import { PessoaService } from './../../pessoas/pessoa.service';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
-import { Lancamento } from '../lancamento';
 
 @Component({
   selector: 'app-lancamento-cadastro',
