@@ -2,7 +2,7 @@
   <form (ngSubmit)="salvar()" [formGroup]="formulario">
     <div class="ui-g">
       <div class="ui-g-12">
-        <h1>Lançamento: {{ editando ? 'Editar ' + lancamento.codigo : 'Novo' }}</h1>
+        <h1>Lançamento: {{ editando ? 'Editar ' : 'Novo' }}</h1>
       </div>
       <div class="ui-g-12">
         <p-selectButton [options]="tipos" formControlName="tipo"></p-selectButton>

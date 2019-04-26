@@ -85,16 +85,16 @@ export class LancamentoCadastroComponent implements OnInit {
 
   salvar() {
     if (this.editando) {
-      console.log('entroun no atualizar: ' + this.formulario);
+      console.log('entrou no atualizar: ');
       this.atualizar();
     } else {
-      console.log('entroun no novo: ' + this.formulario);
+      console.log('entrou no novo: ');
       this.novo();
     }
   }
 
   novo() {
-    this.lancamentoService.salvar(this.formulario.value)
+    this.lancamentoService.novo(this.formulario.value)
           .then(lancamento => {
             this.messageService.add({severity: 'success', summary: 'Sucesso!', detail: 'Salvo com sucesso!'});
             this.router.navigate(['/lancamentos', lancamento.codigo]);

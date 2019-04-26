@@ -62,7 +62,7 @@ export class LancamentoService {
         });
     }
 
-    salvar(lancamento: Lancamento): Promise<any> {
+    novo(lancamento: Lancamento): Promise<any> {
       return this.http.post(this.lancamentosUrl, JSON.stringify(lancamento), httpOptions)
         .toPromise()
         .then(response => response);
