@@ -21,12 +21,12 @@ export class DashboardService {
   }
 
   lancamentosPorCategoria(): Promise<Array<any>> {
-    return this.http.get<Array<any>>(`${this.lancamentosUrl}/estatisticas/por-categoria`, httpOptions)
+    return this.http.get<Array<any>>(`${this.lancamentosUrl}/estatistica/por-categoria`, httpOptions)
       .toPromise();
   }
 
   lancamentosPorDia(): Promise<Array<any>> {
-    return this.http.get<Array<any>>(`${this.lancamentosUrl}/estatisticas/por-dia`, httpOptions)
+    return this.http.get<Array<any>>(`${this.lancamentosUrl}/estatistica/por-dia`, httpOptions)
       .toPromise()
       .then(response => {
         this.converterStringsParaDatas(response);
