@@ -34,12 +34,12 @@ export class DashboardComponent implements OnInit {
 
   configurarGraficoPizza() {
     this.dashboardService.lancamentosPorCategoria()
-          .then(lancamentos =>{
+          .then(lancamentos => {
             this.pieChartData = {
-              labels: lancamentos.map(lancamento => lancamento.categoria.nome),
+              labels: lancamentos.map(lancamentoEstatisticaCategoria => lancamentoEstatisticaCategoria.categoria.nome),
               datasets: [
                 {
-                  data: lancamentos.map(lancamento => lancamento.total),
+                  data: lancamentos.map(lancamentoEstatisticaCategoria => lancamentoEstatisticaCategoria.total),
                   backgroundColor: ['#FF9900', '#109618', '#990099', '#3B3EAC', '#0099C6', '#DD4477', '#3366CC', '#DC3912']
                 }
               ]
