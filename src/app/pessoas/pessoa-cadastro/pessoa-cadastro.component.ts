@@ -81,4 +81,14 @@ export class PessoaCadastroComponent implements OnInit {
     this.contato = new Contato();
   }
 
+  confirmarContato(formContato: FormControl) {
+    this.pessoa.contatos.push(this.setarContato(this.contato));
+    this.exibirFormularioContato = false;
+    formContato.reset();
+  }
+
+  setarContato(contato: Contato): Contato {
+    return new Contato(contato.codigo, contato.nome, contato.email, contato.telefone);
+  }
+
 }

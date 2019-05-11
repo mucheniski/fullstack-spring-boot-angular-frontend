@@ -87,7 +87,7 @@
   </form>
 </div>
 <p-dialog header="Contato" [(visible)]="exibirFormularioContato" *ngIf="contato" modal="modal">
-  <form #formContato="ngForm">
+  <form #formContato="ngForm" (ngSubmit)="confirmarContato(formContato)">
     <div class="ui-g-12 ui-fluid">
       <label>Nome</label>
       <input pInputText type="text" name="nome" [(ngModel)]="contato.nome" #contatoNome="ngModel" required/>
