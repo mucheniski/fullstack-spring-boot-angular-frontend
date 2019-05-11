@@ -86,6 +86,25 @@
     </div>
   </form>
 </div>
-<p-dialog header="Contato" [(visible)]="exibirFormularioContato" modal="modal">
-
+<p-dialog header="Contato" [(visible)]="exibirFormularioContato" *ngIf="contato" modal="modal">
+  <form #formContato="ngForm">
+    <div class="ui-g-12 ui-fluid">
+      <label>Nome</label>
+      <input pInputText type="text" name="nome" [(ngModel)]="contato.nome" #contatoNome="ngModel" required/>
+      <app-message [control]="contatoNome" error="required" text="Por gentileza, informe o nome"></app-message>
+    </div>
+    <div class="ui-g-12 ui-fluid">
+      <label>E-mail</label>
+      <input pInputText type="email" name="email" [(ngModel)]="contato.email" #contatoEmail="ngModel" required/>
+      <app-message [control]="contatoEmail" error="required" text="Por gentileza, informe o e-mail!"></app-message>
+      <app-message [control]="contatoEmail" error="email" text="Por gentileza, informe um e-mail válido!"></app-message>
+    </div>
+    <div class="ui-g-12 ui-fluid">
+      <label>Telefone</label>
+      <p-inputMask pInputText type="text" name="telefone" [(ngModel)]="contato.telefone" mask="(99) 99999-9999"></p-inputMask>
+    </div>
+    <div class="ui-g-12">
+      <button pButton type="submit" label="Confirmar" [disabled]="formContato.invalid"></button>
+    </div>
+  </form>
 </p-dialog>

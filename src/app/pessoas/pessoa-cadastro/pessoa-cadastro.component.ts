@@ -7,7 +7,7 @@ import { MessageService } from 'primeng/components/common/api';
 
 import { PessoaService } from './../pessoa.service';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
-import { Pessoa } from '../pessoa';
+import { Pessoa, Contato } from '../pessoa';
 
 @Component({
   selector: 'app-pessoa-cadastro',
@@ -18,6 +18,7 @@ export class PessoaCadastroComponent implements OnInit {
 
   pessoa = new Pessoa();
   exibirFormularioContato = false;
+  contato: Contato;
 
   constructor(private title: Title,
               private route: ActivatedRoute,
@@ -77,6 +78,7 @@ export class PessoaCadastroComponent implements OnInit {
 
   abrirModalContato() {
     this.exibirFormularioContato = true;
+    this.contato = new Contato();
   }
 
 }
