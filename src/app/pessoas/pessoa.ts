@@ -3,6 +3,7 @@ export class Pessoa {
   nome: string;
   endereco = new Endereco();
   ativo = true;
+  contatos = new Array<Contato>();
 }
 
 export class Endereco {
@@ -13,4 +14,11 @@ export class Endereco {
   cep: string;
   cidade: string;
   estado: string;
+}
+
+export class Contato {
+  codigo: number;
+  nome: string;
+  email: string;
+  telefone: string;
 }

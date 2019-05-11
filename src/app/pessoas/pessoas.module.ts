@@ -1,5 +1,5 @@
-import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import { InputTextModule } from 'primeng/inputtext';
@@ -11,6 +11,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputMaskModule } from 'primeng/inputmask';
+import { PanelModule } from 'primeng/panel';
 
 import { SharedModule } from '../shared/shared.module';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
@@ -23,7 +24,9 @@ import { PessoasRoutingModule } from './pessoas-routing.module';
     PessoaCadastroComponent
   ],
   imports: [
+    FormsModule,
     CommonModule,
+
     InputTextModule,
     ButtonModule,
     TableModule,
@@ -33,9 +36,9 @@ import { PessoasRoutingModule } from './pessoas-routing.module';
     SelectButtonModule,
     DropdownModule,
     InputMaskModule,
-    FormsModule,
-    SharedModule,
+    PanelModule,
 
+    SharedModule,
     PessoasRoutingModule
   ],
   exports: []

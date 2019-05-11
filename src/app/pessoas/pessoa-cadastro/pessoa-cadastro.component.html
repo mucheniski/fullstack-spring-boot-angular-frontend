@@ -1,64 +1,85 @@
 <div class="container">
   <form #form="ngForm" (ngSubmit)="salvar(form)">
     <div class="ui-g">
-
       <div class="ui-g-12">
         <h1>Pessoa: {{ editando ? 'Editar ' + pessoa.codigo : 'Nova' }}</h1>
       </div>
-
       <div class="ui-g-12 ui-md-12 ui-fluid">
         <label>Nome</label>
         <input pInputText type="text" ngModel name="nome" [(ngModel)]="pessoa.nome" #nome="ngModel" required minlength="5">
         <app-message [control]="nome" error="required" text="Por gentileza, informe um nome"></app-message>
         <app-message [control]="nome" error="minlength" text="Por gentileza, o nome precisa ter no mínimo {{ nome.errors?.minlength?.requiredLength }} caracteres! Foram digitados apenas {{ nome.errors?.minlength?.actualLength }}"></app-message>
       </div>
-
       <div class="ui-g-12 ui-md-10 ui-fluid">
         <label>Logradouro</label>
         <input pInputText type="text" ngModel name="logradouro" [(ngModel)]="pessoa.endereco.logradouro" #logradouro="ngModel" required>
         <app-message [control]="logradouro" error="required" text="Por gentileza, informe o logradouro"></app-message>
       </div>
-
       <div class="ui-g-12 ui-md-2 ui-fluid">
         <label>Número</label>
         <input pInputText type="text" ngModel name="numero" [(ngModel)]="pessoa.endereco.numero" #numero="ngModel" required>
         <app-message [control]="numero" error="required" text="Por gentileza, informe o numero"></app-message>
       </div>
-
       <div class="ui-g-12 ui-md-4 ui-fluid">
         <label>Complemento</label>
         <input pInputText type="text" name="Complemento" [(ngModel)]="pessoa.endereco.complemento"/>
       </div>
-
       <div class="ui-g-12 ui-md-4 ui-fluid">
         <label>Bairro</label>
         <input pInputText type="text" ngModel name="bairro" [(ngModel)]="pessoa.endereco.bairro" #bairro="ngModel" required>
         <app-message [control]="bairro" error="required" text="Por gentileza, informe o bairro"></app-message>
       </div>
-
       <div class="ui-g-12 ui-md-4 ui-fluid">
         <label>CEP</label>
         <p-inputMask mask="99.999-999" placeholder="99.999-999" ngModel name="cep" [(ngModel)]="pessoa.endereco.cep" #cep="ngModel" required></p-inputMask>
         <app-message [control]="cep" error="required" text="Por gentileza, informe o cep"></app-message>
       </div>
-
       <div class="ui-g-12 ui-md-7 ui-fluid">
         <label>Cidade</label>
         <input pInputText type="text" ngModel name="cidade" [(ngModel)]="pessoa.endereco.cidade" #cidade="ngModel" required>
         <app-message [control]="cidade" error="required" text="Por gentileza, informe a cidade"></app-message>
       </div>
-
       <div class="ui-g-12 ui-md-5 ui-fluid">
         <label>Estado</label>
         <input pInputText type="text" ngModel name="estado" [(ngModel)]="pessoa.endereco.estado" #estado="ngModel" required>
         <app-message [control]="estado" error="required" text="Por gentileza, informe o estado"></app-message>
       </div>
-
+      <div class="ui-g-12">
+        <p-panel header="Contatos">
+          <div class="ui-g">
+            <div class="ui-g-12">
+              <p-table [value]="pessoa.contatos" [responsive]="true">
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                    <th class="col-acoes-header">Ações</th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-contato>
+                  <tr>
+                    <td>{{ contato.nome }}</td>
+                    <td>{{ contato.email }}</td>
+                    <td>{{ contato.telefone }}</td>
+                    <td class="col-acoes">
+                      <div class="btn-acao"><button pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></button></div>
+                      <div class="btn-acao"><button pButton icon="pi pi-trash" class="btn-acao" pTooltip="Excluir" tooltipPosition="top"></button></div>
+                    </td>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                  <tr><td colspan="6">Nenhum registro encontrado!</td></tr>
+                </ng-template>
+              </p-table>
+            </div>
+          </div>
+        </p-panel>
+      </div>
       <div class="ui-g-12">
         <button pButton type="submit" label="Salvar"></button>
         <a routerLink="/pessoas">Voltar para pesquisa</a>
       </div>
-
     </div>
   </form>
 </div>
