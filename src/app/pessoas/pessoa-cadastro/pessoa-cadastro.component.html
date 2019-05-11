@@ -48,6 +48,9 @@
         <p-panel header="Contatos">
           <div class="ui-g">
             <div class="ui-g-12">
+              <button pButton label="Novo" (click)="abrirModalContato()" icon="pi pi-plus" class="ui-button-secondary" type="button"></button>
+            </div>
+            <div class="ui-g-12">
               <p-table [value]="pessoa.contatos" [responsive]="true">
                 <ng-template pTemplate="header">
                   <tr>
@@ -83,3 +86,6 @@
     </div>
   </form>
 </div>
+<p-dialog header="Contato" [(visible)]="exibirFormularioContato" modal="modal">
+
+</p-dialog>

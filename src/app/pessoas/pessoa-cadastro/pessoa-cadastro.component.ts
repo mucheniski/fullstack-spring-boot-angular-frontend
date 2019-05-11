@@ -17,6 +17,7 @@ import { Pessoa } from '../pessoa';
 export class PessoaCadastroComponent implements OnInit {
 
   pessoa = new Pessoa();
+  exibirFormularioContato = false;
 
   constructor(private title: Title,
               private route: ActivatedRoute,
@@ -72,6 +73,10 @@ export class PessoaCadastroComponent implements OnInit {
   // Verifica se o registro está sendo editado ou é uma criação de novo
   get editando() {
     return Boolean(this.pessoa.codigo);
+  }
+
+  abrirModalContato() {
+    this.exibirFormularioContato = true;
   }
 
 }

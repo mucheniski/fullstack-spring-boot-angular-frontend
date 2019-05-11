@@ -12,6 +12,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputMaskModule } from 'primeng/inputmask';
 import { PanelModule } from 'primeng/panel';
+import { DialogModule } from 'primeng/dialog';
 
 import { SharedModule } from '../shared/shared.module';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
@@ -37,6 +38,7 @@ import { PessoasRoutingModule } from './pessoas-routing.module';
     DropdownModule,
     InputMaskModule,
     PanelModule,
+    DialogModule,
 
     SharedModule,
     PessoasRoutingModule
