@@ -19,6 +19,7 @@ export class PessoaCadastroComponent implements OnInit {
   pessoa = new Pessoa();
   exibirFormularioContato = false;
   contato: Contato;
+  contatoIndex: number;
 
   constructor(private title: Title,
               private route: ActivatedRoute,
@@ -79,10 +80,17 @@ export class PessoaCadastroComponent implements OnInit {
   abrirModalContato() {
     this.exibirFormularioContato = true;
     this.contato = new Contato();
+    this.contatoIndex = this.pessoa.contatos.length;
+  }
+
+  editarContato(contato: Contato, index: number) {
+    this.contato = this.setarContato(contato);
+    this.exibirFormularioContato = true;
+    this.contatoIndex = index;
   }
 
   confirmarContato(formContato: FormControl) {
-    this.pessoa.contatos.push(this.setarContato(this.contato));
+    this.pessoa.contatos[this.contatoIndex] = this.setarContato(this.contato);
     this.exibirFormularioContato = false;
     formContato.reset();
   }
