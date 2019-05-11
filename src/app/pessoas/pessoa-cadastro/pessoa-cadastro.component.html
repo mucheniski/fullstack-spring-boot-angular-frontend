@@ -66,8 +66,8 @@
                     <td>{{ contato.email }}</td>
                     <td>{{ contato.telefone }}</td>
                     <td class="col-acoes">
-                      <div class="btn-acao"><button pButton pTooltip="Editar" (click)="editarContato(contato, rowIndex)" icon="pi pi-pencil" tooltipPosition="top" type="button"></button></div>
-                      <div class="btn-acao"><button pButton icon="pi pi-trash" class="btn-acao" pTooltip="Excluir" tooltipPosition="top"></button></div>
+                      <div class="btn-acao"><button pButton pTooltip="Editar" (click)="editarContato(contato, rowIndex)" type="button" icon="pi pi-pencil" tooltipPosition="top"></button></div>
+                      <div class="btn-acao"><button pButton pTooltip="Excluir" (click)="removerContato(rowIndex)" icon="pi pi-trash" type="button" class="btn-acao"  tooltipPosition="top"></button></div>
                     </td>
                   </tr>
                 </ng-template>
