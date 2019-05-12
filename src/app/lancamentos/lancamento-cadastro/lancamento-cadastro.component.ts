@@ -26,6 +26,7 @@ export class LancamentoCadastroComponent implements OnInit {
   pessoas = [];
   // lancamento = new Lancamento();
   formulario: FormGroup;
+  barraProgressoUpload = false;
 
   constructor(
     private title: Title,
@@ -132,6 +133,15 @@ export class LancamentoCadastroComponent implements OnInit {
   // Verifica se o registro está sendo editado ou é uma criação de novo
   get editando() {
     return Boolean(this.formulario.get('codigo').value);
+  }
+
+  get urlUploadAnexo() {
+    // this.barraProgressoUpload = true;
+    return this.lancamentoService.uploadUrlAnexo();
+  }
+
+  erroUpload(event) {
+    this.messageService.add({severity: 'error', summary: 'Erro!', detail: 'Erro ao efetuar Upload!'});
   }
 
 }

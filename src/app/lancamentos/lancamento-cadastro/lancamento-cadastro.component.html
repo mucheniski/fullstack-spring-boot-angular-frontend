@@ -40,6 +40,7 @@
       </div>
       <div class="ui-g-6 ui-g-offset-6 um-md-2 ui-md-offset-10 ui-fluid" *ngIf="!formulario.get('anexo').value">
         <p-fileUpload name="anexo" [url]="urlUploadAnexo" chooseLabel="Anexar" accept="image/*,application/*" mode="basic" auto="true" maxFileSize="1000000000"></p-fileUpload>
+        <p-progressSpinner [hidden]="!barraProgressoUpload" [style]="{ width: '25px', height: '25px' }"></p-progressSpinner>
       </div>
       <div class="ui-g-12 ui-fluid" *ngIf="formulario.get('anexo').value">
         <a [href]="formulario.get('urlAnexo').value" target="_blank" pTootip="Baixar anexo" tooltipPosition="top">{{ formulario.get('anexo').value }}</a>
