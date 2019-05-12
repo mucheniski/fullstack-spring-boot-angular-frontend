@@ -144,4 +144,11 @@ export class LancamentoCadastroComponent implements OnInit {
     this.messageService.add({severity: 'error', summary: 'Erro!', detail: 'Erro ao efetuar Upload!'});
   }
 
+  removerAnexo() {
+    this.formulario.patchValue({
+      anexo: null,
+      urlAnexo: null
+    });
+  }
+
 }
