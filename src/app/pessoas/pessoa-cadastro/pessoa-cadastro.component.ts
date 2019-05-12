@@ -20,6 +20,9 @@ export class PessoaCadastroComponent implements OnInit {
   exibirFormularioContato = false;
   contato: Contato;
   contatoIndex: number;
+  estados: any[];
+  cidades: any[];
+  estadoSelecionado: number;
 
   constructor(private title: Title,
               private route: ActivatedRoute,
@@ -32,6 +35,7 @@ export class PessoaCadastroComponent implements OnInit {
   ngOnInit() {
     this.title.setTitle('Pessoas');
     const codigoLancamento = this.route.snapshot.params['codigo'];
+    this.listarEstados();
 
     if (codigoLancamento) {
       this.buscarPorCodigo(codigoLancamento);
@@ -101,6 +105,22 @@ export class PessoaCadastroComponent implements OnInit {
 
   setarContato(contato: Contato): Contato {
     return new Contato(contato.codigo, contato.nome, contato.email, contato.telefone);
+  }
+
+  listarEstados() {
+    this.pessoaService.listarEstados()
+          .then(response => {
+            this.estados = response.map(estado => ({ label: estado.nome, value: estado.codigo }) );
+          })
+          .catch(erro => this.errorHandler.handle(erro));
+  }
+
+  listarCidades() {
+    this.pessoaService.pesquisarCidades(this.estadoSelecionado)
+          .then(response => {
+            this.cidades = response.map(cidade => ({ label: cidade.nome, value: cidade.codigo }));
+          })
+          .catch(erro => this.errorHandler.handle(erro));
   }
 
 }
