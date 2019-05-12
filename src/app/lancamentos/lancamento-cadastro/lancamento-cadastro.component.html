@@ -46,7 +46,7 @@
         <a [href]="formulario.get('urlAnexo').value" target="_blank" pTootip="Baixar anexo" tooltipPosition="top">{{ formulario.get('anexo').value }}</a>
       </div>
       <div class="ui-g-12">
-        <button pButton type="submit" label="Salvar" [disabled]="formulario.invalid"></button>
+        <button pButton type="submit" label="Salvar" [disabled]="formulario.invalid || barraProgressoUpload"></button>
         <a routerLink="/lancamentos">Voltar para pesquisa</a>
       </div>
     </div>
